@@ -1,0 +1,24 @@
+[tool.pytest.ini_options]
+
+# 测试目录
+testpaths = ["tests"]
+
+# 测试文件命名规则
+python_files = ["test_*.py", "*_test.py"]
+
+# 测试函数命名规则
+python_functions = ["test_*"]
+
+# 测试类命名规则
+python_classes = ["Test*"]
+
+# 将项目根目录加入 Python 模块搜索路径
+pythonpath = ["."]
+
+# pytest 默认参数
+addopts = [
+    "-v",
+    "-s",
+    "--tb=short",
+    "--import-mode=importlib",
+]
