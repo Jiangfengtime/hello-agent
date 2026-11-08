@@ -13,3 +13,10 @@ SUPPORTED_PROVIDERS = Literal[
     "auto",
     "custom"
 ]
+
+MessageRole = Literal[
+    "user",
+    "assistant",
+    "system",
+    "tool"
+]
