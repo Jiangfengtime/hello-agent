@@ -10,7 +10,7 @@ class Config(BaseModel):
     # LLM配置
     default_model: str = "gpt-3.5-turbo"
     default_provider: str = "openai"
-    temperature: float = 0.7
+    temperature: float = 1
     max_tokens: Optional[int] = None
 
     # 系统配置

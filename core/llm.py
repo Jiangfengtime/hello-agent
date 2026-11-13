@@ -25,7 +25,7 @@ class HelloAgentLLM:
         api_key: Optional[str] = None,
         base_url: Optional[str] = None,
         provider: Optional[SUPPORTED_PROVIDERS] = None,
-        temperature: float = 0.7,
+        temperature: float = 1,
         max_tokens: Optional[int] = None,
         timeout: Optional[int] = None,
         **kwargs
