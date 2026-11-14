@@ -40,7 +40,7 @@ class FunctionCallAgent(Agent):
         """构建系统提示词, 注入工具描述"""
         base_prompt = self.system_prompt or "你是一个可靠的AI助理, 能够在需要时调用工具完成任务"
 
-        if not self.enable_tool_calling or not self.tooregistry:
+        if not self.enable_tool_calling or not self.tool_registry:
             return base_prompt
 
         tools_description = self.tool_registry.get_tools_description()
@@ -257,7 +257,7 @@ class FunctionCallAgent(Agent):
         Returns:
 
         """
-        messages = list[dict[str, Any]] = []
+        messages: list[dict[str, Any]] = []
         system_prompt = self._get_system_prompt()
         messages.append({"role": "system", "content": system_prompt})
 
@@ -288,7 +288,7 @@ class FunctionCallAgent(Agent):
                 **kwargs
             )
 
-            choice = response.choice[0]
+            choice = response.choices[0]
             assistant_message = choice.message
             content = self._extract_message_content(assistant_message.content)
             # 原生接口将工具请求放在tool_calls, 而不是从回答文本里面正则寻找.
