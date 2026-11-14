@@ -46,7 +46,7 @@ class SimpleAgent(Agent):
             return base_prompt
 
         # 获取工具描述
-        tools_description = self.tool_registry.get_tool_description()
+        tools_description = self.tool_registry.get_tools_description()
         if not tools_description or tools_description == '暂无可用工具':
             return base_prompt
 
@@ -77,7 +77,7 @@ class SimpleAgent(Agent):
 
     def _parse_tool_calls(self, text: str) -> list:
         """解析文本中的工具调用"""
-        pattern = r'\[TOOL_CALL:([^:]+):(^\]]+)\]'
+        pattern = r'\[TOOL_CALL:([^:]+):([^\]]+)\]'
         matches = re.findall(pattern, text)
 
         tool_calls = []
