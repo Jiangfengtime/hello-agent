@@ -47,7 +47,7 @@ class CalculatorTool(Tool):
         """
         执行计算
         Args:
-            parameters: 包含input参数的字典
+            parameters: 包含input参数的字典[key: 参数名(input), value:参数值]
 
         Returns:
             计算结果
@@ -61,6 +61,7 @@ class CalculatorTool(Tool):
 
         try:
             # 解析表达式
+            # 这一行会把字符串形式的数学表达式解析成一棵 抽象语法树（AST），返回一个 ast.Expression 对象。
             node = ast.parse(expression, mode='eval')
             result = self._eval_node(node.body)
             result_str = str(result)
@@ -72,7 +73,10 @@ class CalculatorTool(Tool):
             return error_msg
 
     def _eval_node(self, node):
-        """递归计算AST节点"""
+        """
+        递归计算AST节点
+        `_eval_node()` 的作用是递归读取数学表达式的抽象语法树，根据节点类型执行对应计算。
+        """
         if isinstance(node, ast.Constant):
             return node.value
         elif isinstance(node, ast.Num):
